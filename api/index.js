@@ -8,12 +8,20 @@ import axios from "axios";
 // FIXME: change when adding authorization
 // also change the table name "book_info" from every query
 const db = new pg.Pool({
-   database: "Book_Notes",
-   user: "postgres",
-   host: "localhost",
-   password: "9126",
-   port: 5432
+   connectionString: "postgresql://neondb_owner:npg_6QSZgsU3Onrp@ep-fancy-snowflake-a123wnc8-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+   ssl: {
+    rejectUnauthorized: false, // Important for Neon
+   }
 })
+
+
+// const db = new pg.Pool({
+//    database: "Book_Notes",
+//    user: "postgres",
+//    host: "localhost",
+//    password: "9126",
+//    port: 5432
+// })
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -23,8 +31,8 @@ const BOOK_API = "https://openlibrary.org/search.json?limit=40&"; // + "q=the+lo
 const COVER_API = "https://covers.openlibrary.org/b/id/"; // + "{id}" + "-S.jpg" // S for small size (M, L)
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-app.use(express.static( path.join(__dirname, "./public")));
+app.set("views", path.join(__dirname, "../views"));
+app.use(express.static( path.join(__dirname, "../public")));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/",async (req, res)=>{
@@ -33,7 +41,7 @@ app.get("/",async (req, res)=>{
       res.render("index.ejs", {books: result.rows});
    } catch(err){
       res.status(500);
-      res.sendFile(path.join(__dirname, "error/error.html"));
+      res.sendFile(path.join(__dirname, "../error/error.html"));
       console.log(err);
       return;
    }
@@ -85,7 +93,7 @@ app.get("/new",async (req,res)=>{
    const book = JSON.parse(req.query.data);
    if(!book){
       res.status(500);
-      res.sendFile(path.join(__dirname, "error/error.html"));
+      res.sendFile(path.join(__dirname, "../error/error.html"));
       console.log(err);
       return;
    }
@@ -127,7 +135,7 @@ app.post("/book", async (req, res)=>{
       )
    } catch(err){
       res.status(500);
-      res.sendFile(path.join(__dirname, "error/error.html"));
+      res.sendFile(path.join(__dirname, "../error/error.html"));
       console.log(err);
       return;
    }
@@ -157,7 +165,7 @@ app.post("/delete/:id",async (req,res)=>{
       return;
    } catch(err){
       res.status(500);
-      res.sendFile(path.join(__dirname, "error/error.html"));
+      res.sendFile(path.join(__dirname, "../error/error.html"));
       console.log(err);
       return;
    }

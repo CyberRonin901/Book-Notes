@@ -1,17 +1,17 @@
 {
   "name": "booknotes",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "api/index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.1",
     "axios": "^1.10.0",
     "body-parser": "^2.2.0",
     "ejs": "^3.1.10",
