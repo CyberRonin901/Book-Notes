@@ -4,22 +4,25 @@ import path, {dirname} from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import axios from "axios";
+import dotenv from "dotenv";
 
 // FIXME: change when adding authorization
 // also change the table name "book_info" from every query
+dotenv.config();
 const db = new pg.Pool({
-   connectionString: "postgresql://neondb_owner:npg_6QSZgsU3Onrp@ep-fancy-snowflake-a123wnc8-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+   connectionString: `postgresql://neondb_owner:${process.env.DB_PASSWORD}@ep-fancy-snowflake-a123wnc8-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require`,
    ssl: {
-    rejectUnauthorized: false, // Important for Neon
+    rejectUnauthorized: false,
    }
 })
 
+// Comment out the code above and use the code below for local hosting
 
 // const db = new pg.Pool({
 //    database: "Book_Notes",
 //    user: "postgres",
 //    host: "localhost",
-//    password: "9126",
+//    password: "",
 //    port: 5432
 // })
 
