@@ -31,7 +31,7 @@
 
       <input type="submit" id="submit" hidden>
       <label for="submit" class="btn" id="submitBtn">Submit</label>
-      <a href="" draggable="false" class="btn" id="CancelBtn">Cancel</a>
+      <a href="/" draggable="false" class="btn" id="CancelBtn">Cancel</a>
 
    </div>
 </form>
@@ -39,10 +39,6 @@
 
 <script>
    $("#CancelBtn").on("click", function(){
-      if(window.history.length > 1){
-         window.history.back();
-      } else{
-         window.location.replace('/');
-      }
+      window.history.back();
    });
 </script>
