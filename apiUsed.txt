@@ -1,0 +1,5 @@
+API used are completely free
+
+search => https://openlibrary.org/search.json?q={+ or % separated string}&limit={int}
+
+cover img => https://covers.openlibrary.org/b/id/{id}-{size}.jpg

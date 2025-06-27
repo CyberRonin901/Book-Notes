@@ -1,0 +1,31 @@
+<head>
+   <link rel="stylesheet" href="/search.css">
+</head>
+
+<%- include("partials/header.ejs") %>
+
+<div id="wrapper">
+
+   <h1>Search results for: <%= text %></h1>
+   <h2>Filter by: <%= filter %></h2>
+
+   <% if(locals.books){ %>
+      <div id="booksContainer">
+         <% books.forEach(book =>{ %>
+            <a id="card" href="/new?data=<%= encodeURIComponent(JSON.stringify(book)) %>">
+               <div id="imgWrapper">
+                  <img src="<%= "https://covers.openlibrary.org/b/id/" + book.cover_i + "-L.jpg" %>" alt="Book cover: <%= book.title %>" loading="lazy">
+               </div>
+               <div id="infoWrapper">
+                  <p id="book-title"><%= book.title %></p>
+                  <p id="book-author">Author: <%= book.author_name ? book.author_name.slice(0, 3) : null %></p>
+                  <p id="book-year">Year: <%= book.first_publish_year %></p>
+               </div>
+            </a>
+         <% }) %>
+      </div>
+   <% }else{ %>
+      <h3><%= empty %></h3>
+   <% } %>
+
+</div>

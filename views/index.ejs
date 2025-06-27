@@ -1,0 +1,59 @@
+<head>
+   <link rel="stylesheet" href="/home/style.css">
+   <script>
+      const data = <%- JSON.stringify(locals.books)  %>;
+   </script>
+</head>
+
+<%- include("partials/header.ejs") %>
+
+<div id="wrapper">
+   <div id="buttons">
+      <div class="btnWrapper" id="sortWrapper">
+         <input type="checkbox" id="sortInput" hidden>
+         <label for="sortInput" id="sortBy">
+            <p></p>
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               width="16"
+               height="16"
+               fill="currentColor"
+               class="bi bi-chevron-down"
+               viewBox="0 0 16 16"
+            >
+               <path
+               fill-rule="evenodd"
+               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+               />
+            </svg>
+         </label>
+         <ul id="sortDropDown"></ul>
+      </div>
+
+      <div class="btnWrapper" id="orderWrapper">
+         <input type="checkbox" id="orderInput" hidden>
+         <label for="orderInput" id="orderBy">
+            <p></p>
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               width="16"
+               height="16"
+               fill="currentColor"
+               class="bi bi-chevron-down"
+               viewBox="0 0 16 16"
+            >
+               <path
+               fill-rule="evenodd"
+               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+               />
+            </svg>
+         </label>
+         <ul id="orderDropDown"></ul>
+      </div>
+   </div>
+
+   <div id="AllBooksWrapper"></div>
+</div>
+
+<script src="home/script.js"></script>
+

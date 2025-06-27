@@ -1,0 +1,44 @@
+<head>
+   <link rel="stylesheet" href="/new.css">
+</head>
+
+<%- include("partials/header.ejs") %>
+
+<% if(locals.book){ %>
+<form action="/book" method="POST">
+   <input type="hidden" name="book_info" value="<%= JSON.stringify(book) %>">
+
+   <div id="wrapper">
+      <div id="contentWrapper">
+         <div id="imgWrapper">
+            <img src="<%= "https://covers.openlibrary.org/b/id/" + book.cover_i + "-L.jpg" %>" alt="Book cover: <%= book.title %>">
+         </div>
+         <div id="textWrapper">
+            <div id="details">
+               <p id="book-title"><%= book.title %></p>
+               <p id="book-author">By: <%= book.author_name %></p>
+               <p id="book-year">Year: <%= book.first_publish_year %></p>
+            </div>
+
+            
+            <p id="rating">
+               Rating: <input required type="number" min="0" max="10" step="0.01" name="rating" id="ratingInput" placeholder="/10">
+            </p>
+            <p id="review">Review:</p>
+            <textarea required name="review" id="reviewInput" placeholder="Write Something" oninput="this.style.height='auto';this.style.height=this.scrollHeight + 'px'"></textarea>
+         </div>
+      </div>
+
+      <input type="submit" id="submit" hidden>
+      <label for="submit" class="btn" id="submitBtn">Submit</label>
+      <a href="" draggable="false" class="btn" id="CancelBtn">Cancel</a>
+
+   </div>
+</form>
+<% } %>
+
+<script>
+   $("#CancelBtn").on("click", function(){
+      window.history.back();
+   });
+</script>
