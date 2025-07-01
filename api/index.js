@@ -44,6 +44,7 @@ app.get("/",async (req, res)=>{
    } catch(err){
       res.status(500);
       res.sendFile(path.join(__dirname, "./error/error.html"));
+      console.log("cannot connect to DB");
       console.log(err);
       return;
    }
