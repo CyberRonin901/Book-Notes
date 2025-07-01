@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 // also change the table name "book_info" from every query
 dotenv.config();
 const db = new pg.Pool({
-   connectionString: `postgresql://neondb_owner:${process.env.DB_PASSWORD}@ep-fancy-snowflake-a123wnc8-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require`,
+   connectionString: process.env.CONNECTION_STRING,
    ssl: {
     rejectUnauthorized: false,
    }
