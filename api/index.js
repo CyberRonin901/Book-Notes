@@ -33,6 +33,7 @@ const BOOK_API = "https://openlibrary.org/search.json?limit=40&"; // + "q=the+lo
 const COVER_API = "https://covers.openlibrary.org/b/id/"; // + "{id}" + "-S.jpg" // S for small size (M, L)
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static( path.join(__dirname, "./public")));
 app.use(bodyParser.urlencoded({extended: true}));
