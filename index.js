@@ -34,8 +34,8 @@ const BOOK_API = "https://openlibrary.org/search.json?limit=40&"; // + "q=the+lo
 const COVER_API = "https://covers.openlibrary.org/b/id/"; // + "{id}" + "-S.jpg" // S for small size (M, L)
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../views"));
-app.use(express.static( path.join(__dirname, "../public")));
+
+app.use(express.static( path.join(__dirname, "./public")));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/",async (req, res)=>{
@@ -44,18 +44,16 @@ app.get("/",async (req, res)=>{
       res.render("index.ejs", {books: result.rows});
    } catch(err){
       res.status(500);
-      res.sendFile(path.join(__dirname, "../error/error.html"));
+      res.sendFile(path.join(__dirname, "./error/error.html"));
       console.log(err);
       return;
    }
 });
 
 app.get("/search",async (req,res)=>{
-   var {text: raw_text, filter: raw_filter} = req.query;
-   var text = raw_text.toLowerCase();
+   const {searchText: raw_text, searchFilter: filter} = req.query;
+   var text = raw_text.toLowerCase().trim();
    text = (text.split(" ")).join("+");
-   var filter = raw_filter.toLowerCase();
-   if(filter === "all") filter = "q";
 
    try{
       const result = await axios.get(BOOK_API + `${filter}=${text}`);
@@ -64,8 +62,7 @@ app.get("/search",async (req,res)=>{
       if(raw_books_data.length === 0){
          res.render("search", {
             text: raw_text,
-            filter: raw_filter,
-            empty: "No book found"
+            filter: filter === "q" ? "all" : filter
          });
          return;
       }
@@ -83,7 +80,7 @@ app.get("/search",async (req,res)=>{
 
       res.render("search.ejs", {
          text: raw_text,
-         filter: raw_filter,
+         filter: filter === "q" ? "all" : filter,
          books
       });
    } catch(err){
@@ -92,11 +89,13 @@ app.get("/search",async (req,res)=>{
    }
 });
 
-app.get("/new",async (req,res)=>{
-   const book = JSON.parse(req.query.data);
+app.get("/new",async (req,res)=>{ // FIXME: update the logic;
+   let book = decodeURIComponent(req.query.data);
+   book = JSON.parse(book);
+
    if(!book){
       res.status(500);
-      res.sendFile(path.join(__dirname, "../error/error.html"));
+      res.sendFile(path.join(__dirname, "./error/error.html"));
       console.log(err);
       return;
    }
@@ -129,8 +128,9 @@ app.get("/book/:id", async(req, res)=>{
 
 app.post("/book", async (req, res)=>{
    const data = req.body;
-   const book = JSON.parse(data.book_info);
+   const book = JSON.parse(decodeURIComponent(data.book_info));
    const {rating, review} = data;
+   console.log(book, rating, review);
 
    try{
       const result = await db.query("INSERT INTO book_info(book_key, title, author_name, first_publish_year, cover_i, rating, review, date_modified) VALUES($1, $2, $3, $4, $5, $6, $7, $8)",
@@ -138,7 +138,7 @@ app.post("/book", async (req, res)=>{
       )
    } catch(err){
       res.status(500);
-      res.sendFile(path.join(__dirname, "../error/error.html"));
+      res.sendFile(path.join(__dirname, "./error/error.html"));
       console.log(err);
       return;
    }
@@ -168,7 +168,7 @@ app.post("/delete/:id",async (req,res)=>{
       return;
    } catch(err){
       res.status(500);
-      res.sendFile(path.join(__dirname, "../error/error.html"));
+      res.sendFile(path.join(__dirname, "./error/error.html"));
       console.log(err);
       return;
    }

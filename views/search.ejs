@@ -1,31 +1,32 @@
-<head>
-   <link rel="stylesheet" href="/search.css">
-</head>
+<%- include("partials/_header.ejs") %>
 
-<%- include("partials/header.ejs") %>
+<section id="search-page">
 
-<div id="wrapper">
+   <div class="wrapper">
+      <h1 class="info">Search results for: <%= text %></h1>
+      <h2 class="info">Filter by: <%= filter %></h2>
 
-   <h1>Search results for: <%= text %></h1>
-   <h2>Filter by: <%= filter %></h2>
+      <% if(locals.books){ %>
+         <div class="books">
+            <% books.forEach(book =>{ %>
+               <a class="card" href="/new?data=<%= encodeURIComponent(JSON.stringify(book)) %>">
+                  <div>
+                     <img src="<%= "https://covers.openlibrary.org/b/id/" + book.cover_i + "-L.jpg" %>" alt="Book cover: <%= book.title %>" loading="lazy">
+                  </div>
+                  <div class="details">
+                     <p class="title"><%= book.title %></p>
+                     <p class="author">Author: <%= book.author_name ? book.author_name.slice(0, 3) : null %></p>
+                     <p class="year">Year: <%= book.first_publish_year %></p>
+                  </div>
+               </a>
+            <% }) %>
+         </div>
+      <% }else{ %>
+         <h2 class="not-found">No results found</h2>
+      <% } %>
 
-   <% if(locals.books){ %>
-      <div id="booksContainer">
-         <% books.forEach(book =>{ %>
-            <a id="card" href="/new?data=<%= encodeURIComponent(JSON.stringify(book)) %>">
-               <div id="imgWrapper">
-                  <img src="<%= "https://covers.openlibrary.org/b/id/" + book.cover_i + "-L.jpg" %>" alt="Book cover: <%= book.title %>" loading="lazy">
-               </div>
-               <div id="infoWrapper">
-                  <p id="book-title"><%= book.title %></p>
-                  <p id="book-author">Author: <%= book.author_name ? book.author_name.slice(0, 3) : null %></p>
-                  <p id="book-year">Year: <%= book.first_publish_year %></p>
-               </div>
-            </a>
-         <% }) %>
-      </div>
-   <% }else{ %>
-      <h3><%= empty %></h3>
-   <% } %>
+   </div>
+   
+</section>
 
-</div>
+<%- include("partials/_footer.ejs") %>

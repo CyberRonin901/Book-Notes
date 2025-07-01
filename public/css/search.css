@@ -1,0 +1,81 @@
+#search-page .wrapper{
+   .info {
+      font-size: 1.25rem;
+      font-weight: 600;
+   }
+
+   .not-found {
+      text-align: center;
+      font-size: 1.75rem;
+      margin-top: 20px;
+   }
+   .books{
+      width: 100%;
+      margin-top: 20px;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+   }
+
+   .card {
+      box-sizing: border-box;
+      width: 48.9%;
+      border-radius: 8px;
+      overflow: hidden;
+      user-select: none;
+      background-color: var(--color-grey-dark);
+      display: flex;
+      gap: 8px;
+      padding-right: 12px;
+
+      &:hover {
+         box-shadow: 0 0 0 1px var(--color-grey);
+      }
+
+      div:has(img) {
+         padding: 0;
+         margin: 0;
+         width: 128px;
+         height: 160px;
+         overflow: hidden;
+         backdrop-filter: brightness(1.1);
+
+         img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            color: grey;
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+         }
+      }
+
+      .details {
+         width: 100%;
+
+         .title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 12px 0 8px 0;
+         }
+
+         .author,
+         .year {
+            font-size: 0.75rem;
+            filter: brightness(0.8);
+            margin-bottom: 2px;
+         }
+      }
+   }
+   @media (max-width: 992px){
+      .books .card{
+         width: 100%;
+      }
+   }
+   @media (min-width: 1440px){
+      .books .card{
+         width: 32%;
+      }
+   }
+}

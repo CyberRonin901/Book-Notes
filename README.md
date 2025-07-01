@@ -33,7 +33,7 @@ This section describes how you can host this website locally
 
 #### ***`4. Start the server`***
 ```bash
- node api/index.js
+ node index.js
 ```
 * Open `https://localhost:3000` in your browser
 

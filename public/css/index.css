@@ -1,0 +1,132 @@
+#home-page .wrapper{
+   .drop-down{
+      position: relative;
+      display: inline-block;
+      margin-right: 6px;
+      
+      select {
+         padding: 8px 28px 8px 12px;
+         border-radius: 20px;
+         border: none;
+         background-color: var(--color-orange);
+         appearance: none;
+      
+         &:hover {
+            cursor: pointer;
+         }
+      }
+      svg {
+         position: absolute;
+         width: 14px;
+         height: 14px;
+         inset: 0;
+         left: calc(100% - 22px);
+         margin: auto 0;
+         user-select: none;
+         pointer-events: none;
+         transition: transform 0.3s ease;
+      }
+      select:open + svg {
+         transform: rotate(-180deg);
+      }
+   }
+
+   .books{
+      max-width: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      li{
+         position: relative;
+         box-sizing: border-box;
+         border-radius: 8px;
+         background-color: var(--color-grey-dark);
+         padding: 8px;
+         overflow: hidden;
+         width: 48.9%;
+         display: flex;
+         gap: 8px;
+         
+         &:hover{
+            box-shadow: 0 0 0 1px var(--color-grey);
+            img{
+               transform: scale(1.1);
+            }
+         }
+         .left-container{
+            div:has(img){
+               padding: 0;
+               margin: 0;
+               width: 120px;
+               height: 160px;
+               overflow: hidden;
+               background-color: var(--color-grey);
+               img{
+                  object-fit: contain;
+                  width: 100%;
+                  height: 100%;
+                  transition: transform 0.3s ease;
+               }
+            }
+            .author{
+               margin: 8px 0;
+               font-size: 0.75rem;
+               font-weight: normal;
+               color: var(--text-color-secondary);
+            }
+         }
+
+         .right-container{
+            width: 100%;
+
+            .title{
+               font-size: 1rem;
+               font-weight: 500;
+               margin-bottom: 4px;
+            }
+            .year{
+               font-size: 0.75rem;
+               color: var(--text-color-secondary);
+            }
+            .rating{
+               margin-top: 6px;
+               margin-bottom: 4px;
+               font-size: 1.25rem;
+               font-weight: 400;
+               color: var(--color-yellow);
+
+               svg{
+                  fill: var(--color-yellow);
+               }
+            }
+            .review{
+               font-size: 0.75rem;
+               filter: brightness(0.8);
+            }
+         }
+      }
+   }
+
+   @media (max-width: 425px){
+      .books{
+          flex-direction: column;
+         li{
+            display: block;
+            padding: 16px;
+            width: 100%;
+         }
+      }
+   }
+   @media (max-width: 992px){
+      .books > li{
+         width: 100%;
+      }
+   }
+   @media (min-width: 1440px){
+      .books > li{
+         width: 32%;
+      }
+   }
+}

@@ -1,44 +1,39 @@
-<head>
-   <link rel="stylesheet" href="/new.css">
-</head>
+<%- include("partials/_header.ejs") %>
 
-<%- include("partials/header.ejs") %>
-
+<section id="new-book-page">
 <% if(locals.book){ %>
 <form action="/book" method="POST">
-   <input type="hidden" name="book_info" value="<%= JSON.stringify(book) %>">
+   <input type="hidden" name="book_info" value="<%= encodeURIComponent(JSON.stringify(book)) %>">
 
-   <div id="wrapper">
-      <div id="contentWrapper">
-         <div id="imgWrapper">
+   <div class="wrapper">
+      <div class="book-full-view">
+         <div>
             <img src="<%= "https://covers.openlibrary.org/b/id/" + book.cover_i + "-L.jpg" %>" alt="Book cover: <%= book.title %>">
          </div>
-         <div id="textWrapper">
-            <div id="details">
-               <p id="book-title"><%= book.title %></p>
-               <p id="book-author">By: <%= book.author_name %></p>
-               <p id="book-year">Year: <%= book.first_publish_year %></p>
-            </div>
+         <div class="details">
+            <p class="title"><%= book.title %></p>
+            <p class="author">By: <%= book.author_name %></p>
+            <p class="year">Year: <%= book.first_publish_year %></p>
 
-            
-            <p id="rating">
-               Rating: <input required type="number" min="0" max="10" step="0.01" name="rating" id="ratingInput" placeholder="/10">
+            <p class="rating">
+               Rating: <input required type="number" min="0" max="10" step="0.01" name="rating" placeholder="/10">
             </p>
-            <p id="review">Review:</p>
-            <textarea required name="review" id="reviewInput" placeholder="Write Something" oninput="this.style.height='auto';this.style.height=this.scrollHeight + 'px'"></textarea>
+            <textarea required name="review" placeholder="Write Something" oninput="this.style.height='auto';this.style.height=this.scrollHeight + 'px'"></textarea>
          </div>
       </div>
 
       <input type="submit" id="submit" hidden>
-      <label for="submit" class="btn" id="submitBtn">Submit</label>
-      <a href="/" draggable="false" class="btn" id="CancelBtn">Cancel</a>
-
+      <label for="submit" class="btn submit">Submit</label>
+      <a href="/" draggable="false" class="btn cancel">Cancel</a>
    </div>
 </form>
 <% } %>
+</section>
 
 <script>
-   $("#CancelBtn").on("click", function(){
+   $(".btn.cancel").on("click", function(){
       window.history.back();
    });
 </script>
+
+<%- include("partials/_footer.ejs") %>
