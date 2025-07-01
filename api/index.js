@@ -1,7 +1,6 @@
 import express from "express";
 import pg from "pg";
-import path, {dirname} from "path";
-import { fileURLToPath } from "url";
+import path from "path";
 import bodyParser from "body-parser";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -26,7 +25,7 @@ const db = new pg.Pool({
 //    port: 5432
 // })
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = path.resolve();
 const app = express();
 const port = 3000;
 
