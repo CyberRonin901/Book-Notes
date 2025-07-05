@@ -1,5 +1,7 @@
 # BookNotes
 
+[Live Demo](https://book-notes-gold.vercel.app/)
+
 BookNotes is an open-source web application for managing and organizing your book notes. It features Google authentication, book management, and a user-friendly interface for creating, searching, and editing notes. Built with Node.js, Express, EJS, and PostgreSQL, BookNotes is designed for personal and collaborative use.
 
 ## Features
