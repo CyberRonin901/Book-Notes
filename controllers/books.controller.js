@@ -3,10 +3,6 @@ import { fetchAllBooks, getBookByKey, getBookById, insertBook, updateBook, delet
 import { BOOK_API } from "#constants/API";
 
 const home = async(req, res)=>{
-   if(req.isUnauthenticated()) {
-      res.redirect("/login");
-      return;
-   }
    await fetchAllBooks(req.user.id)
          .then(booksData => res.render("index.ejs", {books: booksData, user: req.user}))
          .catch(e => {
@@ -16,10 +12,6 @@ const home = async(req, res)=>{
 }
 
 const search = async(req, res)=>{
-   if(req.isUnauthenticated()) {
-      res.redirect("/login");
-      return;
-   }
    const {searchText: raw_text, searchFilter: filter} = req.query;
    var text = raw_text.toLowerCase().trim();
    text = (text.split(" ")).join("+");
@@ -60,10 +52,6 @@ const search = async(req, res)=>{
 }
 
 const newBook = async (req,res)=>{
-   if(req.isUnauthenticated()) {
-      res.redirect("/login");
-      return;
-   }
    var book = decodeURIComponent(req.query.data);
    book = JSON.parse(book);
 
@@ -87,10 +75,6 @@ const newBook = async (req,res)=>{
 }
 
 const getBook = async(req, res)=>{
-   if(req.isUnauthenticated()) {
-      res.redirect("/login");
-      return;
-   }
    const id = req.params.id;
 
    const result = await getBookById(id, req.user.id)
@@ -104,11 +88,6 @@ const getBook = async(req, res)=>{
 }
 
 const insertBookData = async (req, res)=>{
-   if(req.isUnauthenticated()) {
-      res.redirect("/login");
-      return;
-   }
-
    const data = req.body;
    const book = JSON.parse(decodeURIComponent(data.book_info));
    const {rating, review} = data;
@@ -119,11 +98,6 @@ const insertBookData = async (req, res)=>{
 }
 
 const editBookData = async(req, res)=>{
-   if(req.isUnauthenticated()) {
-      res.redirect("/login");
-      return;
-   }
-
    const id = req.params.id;
    var {rating, review} = req.body;
    rating = parseFloat(rating);
@@ -134,11 +108,6 @@ const editBookData = async(req, res)=>{
 }
 
 const deleteBookData = async (req,res)=>{
-   if(req.isUnauthenticated()) {
-      res.redirect("/login");
-      return;
-   }
-
    const id = req.params.id
    await deleteBook(id, req.user.id)
          .catch(e => console.log(e));;

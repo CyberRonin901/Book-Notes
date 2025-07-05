@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const sendProfilePic = (req, res) => {
-  if(req.isUnauthenticated()) return;
   axios.get(req.user.picture, {
       responseType: "stream"
     })

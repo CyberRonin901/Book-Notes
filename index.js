@@ -10,6 +10,7 @@ import authGoogleRoute from "#routes/authGoogle.route";
 import booksRoute from "#routes/books.route";
 import errorRoute from "#routes/error.route";
 import userRouter from "#routes/user.route";
+import authenticateUser from "#middlewares/authenticate.middleware";
 
 const app = express();
 
@@ -36,9 +37,8 @@ passport.deserializeUser((user, done) => {
 });
 
 // routes
-app.get("/", (req, res)=>{
-  if(req.isAuthenticated()) res.redirect("/books");
-  else res.redirect("/login");
+app.get("/", authenticateUser,(req, res)=>{
+  res.redirect("/books");
 });
 app.get("/login", (req, res)=>{
   res.render("login.ejs");
@@ -46,8 +46,9 @@ app.get("/login", (req, res)=>{
 
 app.use("/auth/google", authGoogleRoute);
 app.use("/error", errorRoute);
-app.use("/user", userRouter);
-app.use("/books", booksRoute);
+
+app.use("/user", authenticateUser, userRouter);
+app.use("/books", authenticateUser, booksRoute);
 
 app.listen(settings.PORT, ()=>{
    console.log(`Server running on port: ${settings.PORT}`);
