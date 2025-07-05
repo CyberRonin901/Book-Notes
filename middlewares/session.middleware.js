@@ -12,7 +12,7 @@ const session = expressSession({
       }),
    secret: settings.SESSION_SECRET,
    resave: false,
-   saveUninitialized: true,
+   saveUninitialized: false,
    cookie:{
          secure: settings.ENV === "dev" ? false : true,
          sameSite: "none",
