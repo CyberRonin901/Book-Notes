@@ -34,7 +34,8 @@ $(document).on("click", function (event) {
       $userOptions.hide();
    } else if(event.target === $userPic[0]){
       $userOptions.toggle();
-   } else if(event.target === $("nav .user svg")[0]){
+   } 
+   if(event.target === $("nav .user svg")[0]){
       $userOptions.hide();
    }
 });
