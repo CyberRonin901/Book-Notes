@@ -13,6 +13,7 @@ const settings = {
    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
    GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL,
    GOOGLE_USER_PROFILE_URL: process.env.GOOGLE_USER_PROFILE_URL,
+   DOMAIN: process.env.DOMAIN,
 }
 
 export default settings;
