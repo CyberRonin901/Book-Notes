@@ -35,6 +35,7 @@ ul{
 }
 .wrapper{
    padding: 2rem 4vw;
+   padding-top: 80px;
    max-width: 1920px;
    margin: 0 auto;
 }

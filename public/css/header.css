@@ -1,14 +1,15 @@
 @import url("./base.css");
 
 nav{
-   max-width: 100%;
-   padding: 0.5rem min(2vw, 1.5rem);
+   width: 100%;
+   padding: 0.5rem 0;
    list-style-type: none;
    display: flex;
    justify-content: space-between;
    align-items: center;
-   /* background-color: var(--color-grey-dark); */
    background-color: black;
+   position: fixed;
+   z-index: 10;
 
    *{
       z-index: 10;
@@ -17,10 +18,7 @@ nav{
    #logo{
       font-size: 1.5rem;
       font-weight: 200;
-   }
-
-   #homeBtn{
-      display: none;
+      margin-left: min(2vw, 1.5rem);
    }
 
    #search-bar{
@@ -34,6 +32,7 @@ nav{
       border-radius: 20px;
       background-color: transparent;
       backdrop-filter: contrast(0.5) brightness(0.7);
+      margin-left: min(2vw, 1.5rem);
 
       
       div:has(select){
@@ -94,6 +93,58 @@ nav{
       height: 34px;
       width: 34px;
       border-radius: 50%;
+      background-color: var(--color-grey);
+      margin-right: min(2vw, 1.5rem);
+      z-index: 20;
+      &:hover{
+         box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.269);
+         cursor: pointer;
+      }
+   }
+
+   .user{
+      position: absolute;
+      background-color: var(--color-grey);
+      min-width: 280px;
+      right: 2vw;
+      top: 60px;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 20px;
+      user-select: none;
+      box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4),
+                  -2px 0 5px 0 rgba(0, 0, 0, 0.4);
+
+      *{
+         display: block;
+         font-size: 1rem;
+      }
+      p:nth-child(2){
+         font-size: 0.75rem;
+         margin-top: 0.25rem;
+      }
+      p:nth-child(3){
+         font-size: 1.25rem;
+         margin: 20px 0;
+      }
+      a{
+         padding: 0.75rem 0;
+         &:hover{
+            background-color: var(--color-orange);
+         }
+      }
+      svg{
+         position: absolute;
+         top: 4px;
+         right: 4px;
+         padding: 12px;
+         border-radius: 50%;
+         background-color: transparent;
+         &:hover{
+            cursor: pointer;
+            backdrop-filter: brightness(1.2);
+         }
+      }
    }
 
    #suggestions{
@@ -104,8 +155,7 @@ nav{
       width: 100%;
       margin-top: 2px;
       border-radius: 10px;
-      background-color: transparent;
-      backdrop-filter: blur(20px) brightness(0.6) contrast(0.8);
+      background-color: var(--color-grey);
       box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4),
                   -2px 0 5px 0 rgba(0, 0, 0, 0.4);
       user-select: none;
@@ -147,7 +197,7 @@ nav{
             }
       }
    }
-
+   
 
    @media (max-width: 576px) {
       &{
@@ -155,9 +205,6 @@ nav{
       }
       #logo{
          display: none;
-      }
-      #homeBtn{
-         display: block;
       }
       #search-bar{
          flex: 1;

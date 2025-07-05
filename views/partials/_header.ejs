@@ -10,17 +10,12 @@
     <link rel="stylesheet" href="/css/new.css">
     <link rel="stylesheet" href="/css/view_edit.css">
   </head>
-  
+
 <body>
     
-<form action="/search" method="GET">
+<form action="/books/search" method="GET">
     <nav>
       <a href="/" id="logo">Book Notes</a>
-      <a href="/" id="homeBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-          <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
-        </svg>
-      </a>
       <div id="search-bar">
         <button id="search">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -46,9 +41,17 @@
         </div>
       </div>
 
-      <!-- FIXME: add the user profile img here -->
-      <img src="https://ia600100.us.archive.org/view_archive.php?archive=/5/items/l_covers_0012/l_covers_0012_62.zip&file=0012626609-L.jpg" alt=""/>
+      <img src="/user/pic" alt="profile picture" style="color: transparent"/>
+      <div class="user" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+        </svg>
+        <p><%= user.email %></p>
+        <p>Hi, <%= user.display_name %>!</p>
+        <a href="/">Home</a>
+        <a href="/user/logout">Logout</a>
+      </div>
     </nav>
 </form>
-  
+
     <main>

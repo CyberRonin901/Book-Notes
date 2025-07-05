@@ -2,7 +2,7 @@
 
 <section id="new-book-page">
 <% if(locals.book){ %>
-<form action="/book" method="POST">
+<form action="/books/book" method="POST">
    <input type="hidden" name="book_info" value="<%= encodeURIComponent(JSON.stringify(book)) %>">
 
    <div class="wrapper">
@@ -24,16 +24,16 @@
 
       <input type="submit" id="submit" hidden>
       <label for="submit" class="btn submit">Submit</label>
-      <a href="/" draggable="false" class="btn cancel">Cancel</a>
+      <a href="/books" draggable="false" class="btn cancel">Cancel</a>
    </div>
 </form>
 <% } %>
 </section>
+
+<%- include("partials/_footer.ejs") %>
 
 <script>
    $(".btn.cancel").on("click", function(){
       window.history.back();
    });
 </script>
-
-<%- include("partials/_footer.ejs") %>

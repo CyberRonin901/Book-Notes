@@ -1,5 +1,4 @@
 if($("#home-page").length !== 0){
-   console.log("this is triggered");
    const $sort = $("select#sort");
    const $order = $("select#order");
    const $books = $("#home-page .books");
@@ -44,7 +43,7 @@ if($("#home-page").length !== 0){
       booksData.forEach(book =>{
          const newBook = $(`<li></li>`);
          newBook.html(`
-            <a href='/book/${book.id}' style='display: contents'>
+            <a href='/books/book/${book.id}' style='display: contents'>
                <div class='left-container'>
                   <div>
                      <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" loading="lazy">

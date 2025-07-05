@@ -9,7 +9,7 @@
       <% if(locals.books){ %>
          <div class="books">
             <% books.forEach(book =>{ %>
-               <a class="card" href="/new?data=<%= encodeURIComponent(JSON.stringify(book)) %>">
+               <a class="card" href="/books/new?data=<%= encodeURIComponent(JSON.stringify(book)) %>">
                   <div>
                      <img src="<%= "https://covers.openlibrary.org/b/id/" + book.cover_i + "-L.jpg" %>" alt="Book cover: <%= book.title %>" loading="lazy">
                   </div>

@@ -5,6 +5,9 @@ const $searchFilter = $("nav select");
 const $searchBar = $("input[type='search']");
 const $searchSuggestions = $("nav #suggestions");
 
+const $userPic = $("nav img");
+const $userOptions = $("nav .user");
+
 var timeOutId;
 var books = [];
 
@@ -20,11 +23,19 @@ $searchBar.on("focus", function () {
 });
 
 $(document).on("click", function (event) {
-   if (!event.target.closest("nav #search-wrapper")) {
+   if(!event.target.closest("nav #search-wrapper")) {
       $searchSuggestions.slideUp(200);
    }
-   if (event.target.closest("nav #suggestions")) {
+   if(event.target.closest("nav #suggestions")) {
       handleAddBookClick(event.target.id);
+   }
+
+   if(!event.target.closest("nav .user") && event.target !== $userPic[0]){
+      $userOptions.hide();
+   } else if(event.target === $userPic[0]){
+      $userOptions.toggle();
+   } else if(event.target === $("nav .user svg")[0]){
+      $userOptions.hide();
    }
 });
 
@@ -90,7 +101,7 @@ async function handleAddBookClick(id){
    const book = books[parseInt(id)];
    if(!book) return;
 
-   const newForm = $("<form action='/new' method='GET' hidden></form>");
+   const newForm = $("<form action='/books/new' method='GET' hidden></form>");
    const input = $(`<input type="text" name="data" value="${encodeURIComponent(JSON.stringify(book))}">`);
 
    newForm.append(input);

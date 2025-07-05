@@ -1,23 +1,18 @@
 CREATE TABLE book_info(
 	id SERIAL PRIMARY KEY,
-	book_key TEXT UNIQUE NOT NULL,
+	book_key VARCHAR(50) NOT NULL,
 	title TEXT NOT NULL,
 	author_name TEXT[],
-	first_publish_year INT,
-	cover_i INT,
-	rating REAL CHECK (rating >= 0 AND rating <= 10),
+	first_publish_year INTEGER,
+	cover_i INTEGER,
+	rating REAL,
 	review TEXT,
-	date_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	date_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	user_id VARCHAR(100) NOT NULL
 );
 
-SELECT * FROM book_info
-
-SELECT * FROM book_info WHERE book_key=$1
-
-SELECT * FROM book_info WHERE id=$1
-
-INSERT INTO book_info(book_key, title, author_name, first_publish_year, cover_i, rating, review, date_modified) VALUES($1, $2, $3, $4, $5, $6, $7, $8)
-
-UPDATE book_info SET rating=$1, review=$2 WHERE id=$3
-
-DELETE FROM book_info WHERE id=$1
+CREATE TABLE user_sessions(
+	sid VARCHAR(200) PRIMARY KEY,
+	sess JSON NOT NULL,
+	expire TIMESTAMP WITH TIME ZONE NOT NULL
+)
