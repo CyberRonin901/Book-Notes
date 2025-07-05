@@ -16,10 +16,11 @@ const app = express();
 // server config
 app.set("view engine", "ejs");
 app.set("views", path.join( path.resolve(), "views"));
+const staticPath = path.join( path.resolve(), "public");
 
 // default middlewares
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
+app.use(express.static(staticPath));
 
 // middlewares
 app.use(session); // session/cookie
