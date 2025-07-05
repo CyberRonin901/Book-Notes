@@ -16,7 +16,6 @@ const session = expressSession({
    cookie:{
          secure: settings.ENV === "dev" ? false : true,
          sameSite: "none",
-         Domain: settings.DOMAIN,
          maxAge: 1000*60*60*24*5 // 5 days
       },
 });

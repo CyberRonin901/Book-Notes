@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(staticPath));
 
 // middlewares
+app.set('trust proxy', 1);
 app.use(session); // session/cookie
 app.use(passport.initialize());
 app.use(passport.session());
