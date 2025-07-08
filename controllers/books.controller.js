@@ -1,14 +1,10 @@
 import axios from "axios";
-import { fetchAllBooks, getBookByKey, getBookById, insertBook, updateBook, deleteBook } from "#models/Books.model";
+import { fetchAllBooks, getBookByKey, getBookById, insertBook, updateBook, deleteBook } from "#utils/dbQueries";
 import { BOOK_API } from "#constants/API";
 
 const home = async(req, res)=>{
-   await fetchAllBooks(req.user.id)
-         .then(booksData => res.render("index.ejs", {books: booksData, user: req.user}))
-         .catch(e => {
-            console.log(e);
-            res.redirect("/error");
-         });
+   const booksData = await fetchAllBooks(req.user.id);
+   res.render("index.ejs", {books: booksData, user: req.user});
 }
 
 const search = async(req, res)=>{
@@ -17,11 +13,7 @@ const search = async(req, res)=>{
    text = (text.split(" ")).join("+");
 
    const result = await axios.get(BOOK_API + `${filter}=${text}`)
-                     .then(response => response.data.docs)
-                     .catch(e =>{
-                        console.log(e);
-                        res.redirect("/error");
-                     });
+                     .then(response => response.data.docs);
 
    if(result.length === 0){
       res.render("search", {
@@ -60,11 +52,7 @@ const newBook = async (req,res)=>{
       return;
    }
 
-   const result = await getBookByKey(book.key, req.user.id)
-                     .catch(e =>{
-                        console.log(e);
-                        res.redirect("/error");
-                     });
+   const result = await getBookByKey(book.key, req.user.id);
 
    if(result.length === 1){
       const id = result[0]['id'];
@@ -76,15 +64,8 @@ const newBook = async (req,res)=>{
 
 const getBook = async(req, res)=>{
    const id = req.params.id;
-
-   const result = await getBookById(id, req.user.id)
-                     .catch(e =>{
-                        console.log(e);
-                        res.redirect("/error");
-                     });
-
-   const book = result[0];
-   res.render("view_edit.ejs", {book, user: req.user});
+   const result = await getBookById(id, req.user.id);
+   res.render("view_edit.ejs", {book: result[0], user: req.user});
 }
 
 const insertBookData = async (req, res)=>{
@@ -92,8 +73,7 @@ const insertBookData = async (req, res)=>{
    const book = JSON.parse(decodeURIComponent(data.book_info));
    const {rating, review} = data;
 
-   await insertBook(book, rating, review, req.user.id)
-         .catch(e => console.log(e));
+   await insertBook(book, rating, review, req.user.id);
    res.redirect("/books");
 }
 
@@ -102,15 +82,13 @@ const editBookData = async(req, res)=>{
    var {rating, review} = req.body;
    rating = parseFloat(rating);
 
-   await updateBook(rating, review, id, req.user.id)
-         .catch(e => console.log(e));
+   await updateBook(rating, review, id, req.user.id);
    res.redirect("/");
 }
 
 const deleteBookData = async (req,res)=>{
    const id = req.params.id
-   await deleteBook(id, req.user.id)
-         .catch(e => console.log(e));;
+   await deleteBook(id, req.user.id);
    res.redirect("/");
 }
 

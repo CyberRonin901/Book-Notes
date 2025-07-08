@@ -1,0 +1,33 @@
+#error-page {
+   * {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   }
+   div{
+      text-align: center;
+      padding-top: 60px;
+   }
+   h1 {
+      font-size: 8rem;
+      font-weight: 400;
+   }
+   h2 {
+      font-size: 1.25rem;
+      font-weight: 200;
+      margin-bottom: 20px;
+   }
+   a {
+      background-color: #008e3b;
+      color: white;
+      text-decoration: none;
+      padding: 6px;
+      border-radius: 6px;
+      width: 240px;
+      margin: 0 auto;
+      display: block;
+      margin-bottom: 6px;
+      &:hover{
+         cursor: pointer;
+      }
+   }
+}

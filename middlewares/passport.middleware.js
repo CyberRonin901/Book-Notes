@@ -1,8 +1,8 @@
 import GoogleStrategy from "passport-google-oauth2";
 import settings from "#config/settings";
-import { createUserObject } from "#models/User.model";
+import { createUserObject } from "#utils/userObject";
 
-const authGoogleUser = new GoogleStrategy(
+const googleStrategy = new GoogleStrategy(
    {
       clientID: settings.GOOGLE_CLIENT_ID,
       clientSecret: settings.GOOGLE_CLIENT_SECRET,
@@ -25,4 +25,4 @@ const authGoogleUser = new GoogleStrategy(
    }
 )
 
-export { authGoogleUser }
+export { googleStrategy }

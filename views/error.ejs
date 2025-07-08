@@ -1,0 +1,31 @@
+<%- include("partials/_header.ejs") %>
+
+<section id="error-page">
+   <div>
+      <h1>
+         <% if(locals.errorCode){ %>
+            <%= errorCode %>
+         <% }else{ %>
+            Oops!
+         <% } %>
+      </h1>
+      <h2>
+         <% if(locals.errorMessage){ %>
+            <%= errorMessage %>
+         <% }else{ %>
+            Something went wrong...<br />
+            Internal Server Error
+         <% } %>
+      </h2>
+      <a>Refresh Page</a>
+      <a href="/">Go Home</a>
+   </div>
+</section>
+
+<%- include("partials/_footer.ejs") %>
+
+<script>
+   $("#error-page a").on("click", ()=>{
+      window.location.reload();
+   });
+</script>

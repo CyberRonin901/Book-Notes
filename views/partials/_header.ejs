@@ -4,60 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Notes</title>
-    <link rel="stylesheet" href="/css/header.css"/>
+    <link rel="stylesheet" href="/css/nav.css"/>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/search.css">
     <link rel="stylesheet" href="/css/new.css">
     <link rel="stylesheet" href="/css/view_edit.css">
+    <link rel="stylesheet" href="/css/error.css">
+    <link rel="stylesheet" href="/css/login.css">
   </head>
 
 <body>
-    
-<form action="/books/search" method="GET">
-    <nav>
-      <a href="/" id="logo">Book Notes</a>
-      <a href="/" id="homeBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-          <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
-        </svg>
-      </a>
-      
-      <div id="search-bar">
-        <button id="search">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-          </svg>
-        </button>
-
-        <div style="display: contents;" id="search-wrapper"> <!-- used for JS -->
-          <input type="search" name="searchText" placeholder="Search a book" required/>
-          <ul id="suggestions"></ul>
-        </div>
-        
-        <div>
-          <select name="searchFilter">
-            <option value="q">All</option>
-            <option value="title">Title</option>
-            <option value="author">Author</option>
-            <option value="subject">Subject</option>
-          </select>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-          </svg>
-        </div>
-      </div>
-
-      <img src="/user/pic" alt="profile picture" style="color: transparent"/>
-      <div class="user" style="display: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-        </svg>
-        <p><%= user.email %></p>
-        <p>Hi, <%= user.display_name %>!</p>
-        <a href="/">Home</a>
-        <a href="/user/logout">Logout</a>
-      </div>
-    </nav>
-</form>
-
     <main>

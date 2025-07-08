@@ -7,10 +7,6 @@ const sendProfilePic = (req, res) => {
     .then(result =>{
       res.setHeader('content-type', result.headers['content-type']);
       result.data.pipe(res);
-    })
-    .catch(e =>{
-      console.log(e);
-      res.status(404).send("Image not found");
     });
 }
 

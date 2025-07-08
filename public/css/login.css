@@ -1,0 +1,52 @@
+#login-page {
+   .wrapper {
+      padding: 0;
+      text-align: center;
+      user-select: none;
+      height: 100lvh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--main-bg-color);
+      div{
+         height: 100%;
+         align-content: center;
+      }
+   }
+   h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+   }
+   a {
+      text-decoration: none;
+      color: #EEEEEE;
+      font-size: 1rem;
+      background-color: #5086ec;
+      padding: 4px;
+      margin: 0 auto;
+      margin-bottom: 6px;
+      width: 240px;
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      border-radius: 4px;
+      &:hover{
+         filter: brightness(0.9);
+      }
+      &:active{
+         filter: brightness(1);
+      }
+   }
+   img {
+      display: inline-block;
+      background-color: white;
+      padding: 0.75rem;
+      border-radius: inherit;
+      width: 16px;
+      height: 16px;
+   }
+   p {
+      margin-bottom: 1rem;
+   }
+}

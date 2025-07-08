@@ -1,80 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Book Notes</title>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-   <style>
-      *{
-         margin: 0;
-         padding: 0;
-         font-family: "Inter", sans-serif;
-      }
-      body{
-         height: 100dvh;
-         background-color: #202124;
-         color: #EEEEEE;
-         padding: 0 6vw;
-         text-align: center;
-         display: flex;
-         flex-direction: column;
-         justify-content: space-between;
-      }
-      .wrapper{
-         margin: auto 0;
-         padding: 4rem 0;
-      }
-      h1{
-         font-size: 4rem;
-         margin-bottom: 2rem;
-      }
-      a{
-         text-decoration: none;
-         color: #EEEEEE;
-         font-size: 1rem;
-         background-color: #5086ec;
-         padding: 4px;
-         margin: 0 auto;
-         margin-bottom: 6px;
-         width: 240px;
-         display: flex;
-         gap: 1.25rem;
-         align-items: center;
-         border-radius: 4px;
-      }
-      a:hover{
-         filter: brightness(0.9);
-      }
-      img{
-         display: inline-block;
-         background-color: white;
-         padding: 0.75rem;
-         border-radius: inherit;
-         width: 16px;
-         height: 16px;
-      }
-      footer{
-         margin-bottom: 1rem;
-      }
-   </style>
-</head>
-<body>
+<%- include("partials/_header.ejs") %>
 
+<section id="login-page">
    <div class="wrapper">
-      <h1>Welcome to Book Notes</h1>
-      <a href="/auth/google">
-         <img src="images/google-icon.png" alt="" width="20" height="20">
-         Sign in with Google
-      </a>
-   </div>
-   <footer>
+      <div>
+         <h1>Welcome to Book Notes</h1>
+         <a href="/auth/google">
+            <img src="images/google-icon.png" alt="" width="20" height="20">
+            Sign in with Google
+         </a>
+      </div>
       <p>
-         By continuing you are accepting all cookies
+          By continuing you are accepting all cookies
       </p>
-   </footer>
-   
-</body>
-</html>
+   </div>
+</section>
+
+<%- include("partials/_footer.ejs") %>
