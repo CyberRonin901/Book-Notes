@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const ENV = process.env.NODE_ENV;
-const PORT = ENV === "prod" ? process.env.PROD_PORT : process.env.DEV_PORT;
+const PORT = ENV === "dev" ? process.env.DEV_PORT : process.env.PROD_PORT;
 
 const settings = {
    ENV,

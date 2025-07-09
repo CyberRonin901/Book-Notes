@@ -7,11 +7,13 @@ const unknownRoute = (req, res) => {
 }
 
 const handleError = (err, req, res, next)=>{
-   console.error(err.stack);
-   res.render("error.ejs", {
-      errorCode: err.statusCode
-   });
-}
+      console.error(err.stack);
+      res.status(err.statusCode || 500)
+         .render("error.ejs", {
+            errorCode: err.statusCode
+      });
+   }
+   
 
 const errors = {
    unknownRoute,
