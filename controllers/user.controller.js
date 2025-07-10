@@ -11,12 +11,7 @@ const sendProfilePic = (req, res) => {
 }
 
 const logout = (req, res)=>{
-  req.session.destroy(function(err) {
-    if(err){
-      console.log(err);
-      res.redirect("/error");
-    }
-  });
+  req.session.destroy();
   res.redirect("/");
 }
 
