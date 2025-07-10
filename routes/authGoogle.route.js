@@ -1,10 +1,15 @@
 import { Router } from "express";
-import authGoogleController from "#controllers/authGoogle.controller";
+import passport from "passport";
 
 const authGoogleRoute = Router();
 
-authGoogleRoute.get("/", authGoogleController.authenticate);
+authGoogleRoute.get("/", passport.authenticate("google", {
+      scope: ["email", "profile"]
+   }));
 
-authGoogleRoute.get("/callback", authGoogleController.redirect);
+authGoogleRoute.get("/callback", passport.authenticate( 'google', {
+      successRedirect: '/',
+      failureRedirect: '/login'
+   }));
 
 export default authGoogleRoute;

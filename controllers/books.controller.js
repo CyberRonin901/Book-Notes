@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetchAllBooks, getBookByKey, getBookById, insertBook, updateBook, deleteBook } from "#utils/dbQueries";
+import { fetchAllBooks, getBookByKey, getBookById, insertBook, updateBook, deleteBook } from "#models/booksModel";
 import { BOOK_API } from "#constants/API";
 
 const home = async(req, res)=>{
